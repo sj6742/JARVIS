@@ -4,11 +4,10 @@ J.A.R.V.I.S (**Just A Rather Very Intelligent System**) is an AI-powered virtual
 
 ## Features
 - **Speech Recognition & Synthesis** – Listens and responds to voice commands.
-- **Web Scraping & Online Search** – Fetches real-time data like news and weather.
-- **Task Automation** – Opens applications, manages files, and sets reminders.
-- **Email & Messaging** – Sends emails and messages using voice commands.
-- **Media Control** – Plays music, opens videos, and controls volume.
-- **Smart Home Integration** – Connects with IoT devices for home automation.
+- **Web Scraping & Online Search** – Fetches real-time data like news.
+- **Task Automation** – Opens applications.
+- **Media Control** – Plays music.
+
 
 ## Technologies Used
 - **Python**
@@ -32,7 +31,7 @@ python jarvis.py
 
 ## Usage
 1. Run the script.
-2. Speak commands like **"Open YouTube", "Send an email", "Tell me the weather"**.
+2. Speak commands like **"Open YouTube", "Tell me the weather"**.
 3. J.A.R.V.I.S will process and respond accordingly.
 
 ## Future Enhancements
@@ -47,4 +46,4 @@ Feel free to fork this repository and improve J.A.R.V.I.S! PRs are welcome.
 This project is licensed under the MIT License.
 
 ---
-Made by [Your Name]
+Made by Sujal
