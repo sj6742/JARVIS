@@ -1,9 +1,9 @@
 # J.A.R.V.I.S - AI Virtual Assistant
-![image](https://github.com/user-attachments/assets/c2bb76bf-072f-4936-82b1-0062393b3ed7)
+![image](https://github.com/user-attachments/assets/c2bb76bf-072f-4936-82b1-0062393b3ed7)J.A.R.V.I.S (**Just A Rather Very Intelligent System**) is an AI-powered virtual assistant designed to automate tasks and enhance user productivity. Built using **Python**, it integrates **speech recognition, natural language processing (NLP), and machine learning** to execute voice commands efficiently.
 
 
 
-J.A.R.V.I.S (**Just A Rather Very Intelligent System**) is an AI-powered virtual assistant designed to automate tasks and enhance user productivity. Built using **Python**, it integrates **speech recognition, natural language processing (NLP), and machine learning** to execute voice commands efficiently.
+
 
 ## Features
 - **Speech Recognition & Synthesis** – Listens and responds to voice commands.
