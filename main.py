@@ -1,16 +1,28 @@
+#_____________________________________________________________________________________________________________
+'''
+TO OPERATE JARVIS OR TEST A JARVIS COMMAND, USE THESE COMMANDS
+
+1) FOR JOKES:- " JARVIS, TELL ME A JOKE."
+2) FOR OPEN WEBPAGE:- "JARVIS, OPEN YOUTUBE."
+3) FOR NEWS:- "JARVIS, NEWS HEADLINES"
+4) FOR MUSIC:- "JARVIS, PLAY SHAPE OF YOU"
+
+'''     
+#_____________________________________________________________________________________________________________
+
 import speech_recognition as sr  # Helps the program listen to you and convert your speech into text
-import webbrowser
+import webbrowser #THIS LIB IS USED FOR OPEN URLs IN A WEB BROWSER
 import pyttsx3  # Converts text into speech, so the assistant can talk back to you.
-import musicLibrary
-import random
-import requests
+import musicLibrary #THIS CONTAIN MUSIC LINK LIB. FOR PLAY MUSIC LINK  
+import random #USED FOR RANDOMLY SELECTING A JOKE FROM A LIST
+import requests #USED TO FETCH DATA FROM A NEWS API
 
 recognizer = sr.Recognizer()
 engine = pyttsx3.init()
 
-def speak(text):
+def speak(text): #speak(text):-  USED pyttx3 engine for convert the text passed into speach....
     engine.say(text)
-    engine.runAndWait()
+    engine.runAndWait() #processes the speach queue and wait up for it to finish
 
 # FOR JOKES TELL JARVIS (JARVIS TELL ME A JOKE)
 def tell_joke():
@@ -27,8 +39,8 @@ def tell_joke():
 # FETCH NEWS HEADLINES
 
 def get_news():
-    api_key = "06a8072720634a79b110ccaeedca4f76"
-    url = f"https://newsapi.org/v2/top-headlines?country=us&apiKey={api_key}"
+    API_KEY = "06a8072720634a79b110ccaeedca4f76"
+    url = f"https://newsapi.org/v2/top-headlines?country=us&apiKey={API_KEY}"
     try:
         response = requests.get(url)
         news_data = response.json()
@@ -49,7 +61,7 @@ def get_news():
         speak("There was an error fetching the news.")
 
 # TO OPEN WEBSITE YOU NEED TO TELL JARVIS TO (JARVIS OPEN 'YOUTUBE')
-def processCommand(c):  
+def processCommand(c):  #THIS COMMAND IS RESPONSIBLE FOR PROCESSING USER`S COMMANDS...
     print(f"Recognized command: {c}")  
     if "open google" in c.lower():
         webbrowser.open("https://google.com")
@@ -87,7 +99,7 @@ def processCommand(c):
     else:
         speak("Website not recognized.")          
 
-if __name__ == '__main__':
+if __name__ == '__main__': #WHEN THE PROGRAM STARTS IT ANNOUNCES THAT IT IS INITIALIZING JARVIS
     speak("Initializing Jarvis...")
     while True:
         # Listen for the wake word "jarvis"
@@ -113,3 +125,5 @@ if __name__ == '__main__':
         
         except Exception as e:
             print(f"Error: {e}")
+
+    
