@@ -125,5 +125,3 @@ if __name__ == '__main__': #WHEN THE PROGRAM STARTS IT ANNOUNCES THAT IT IS INIT
         
         except Exception as e:
             print(f"Error: {e}")
-
-    
