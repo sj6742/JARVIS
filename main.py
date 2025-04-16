@@ -6,8 +6,11 @@ TO OPERATE JARVIS OR TEST A JARVIS COMMAND, USE THESE COMMANDS
 2) FOR OPEN WEBPAGE:- "JARVIS, OPEN YOUTUBE."
 3) FOR NEWS:- "JARVIS, NEWS HEADLINES"
 4) FOR MUSIC:- "JARVIS, PLAY SHAPE OF YOU"
+5) FOR TIME:- "Jarvis, what time is it?"
+6) FOR DATE:- "Jarvis, what's the date?"
+7) FOR PERSNALL COMMAND:- "JARVIS, OPEN CALCULATOR" 
 
-'''     
+'''  
 #_____________________________________________________________________________________________________________
 
 import speech_recognition as sr  # Helps the program listen to you and convert your speech into text
@@ -16,6 +19,9 @@ import pyttsx3  # Converts text into speech, so the assistant can talk back to y
 import musicLibrary #THIS CONTAIN MUSIC LINK LIB. FOR PLAY MUSIC LINK  
 import random #USED FOR RANDOMLY SELECTING A JOKE FROM A LIST
 import requests #USED TO FETCH DATA FROM A NEWS API
+import datetime #USED FOR THE DATE AND TIME 
+import os #WORK AS A OPNING SYSTEM LIKE FOR USING PERSNAL COMMAND 
+
 
 recognizer = sr.Recognizer()
 engine = pyttsx3.init()
@@ -23,6 +29,16 @@ engine = pyttsx3.init()
 def speak(text): #speak(text):-  USED pyttx3 engine for convert the text passed into speach....
     engine.say(text)
     engine.runAndWait() #processes the speach queue and wait up for it to finish
+    
+#CUSTOM GREETING
+def greet_user():
+    hour = datetime.datetime.now().hour
+    if 0 <= hour < 12:
+        speak("Good Morning, Sujal !!")
+    elif 12 <= hour < 18:
+        speak("Good Afternoon, Sujal !!")
+    else:
+        speak("Good evening, Sujal !!")    
 
 # FOR JOKES TELL JARVIS (JARVIS TELL ME A JOKE)
 def tell_joke():
@@ -59,9 +75,53 @@ def get_news():
     except Exception as e:
         print(f"Error fetching news: {e}")
         speak("There was an error fetching the news.")
+    
+#TIME
+def get_time():
+    time = datetime.datetime.now().strftime("%I:%M %P")
+    speak(f"The time is {time}.")
+
+#DATE
+def get_date():
+    date = datetime.datetime.now().strftime("%A,%B %d,%Y")
+    speak(f"Today is {date}.")
+
+#SYSTEM COMMAND
+def open_calculator():
+    speak("Opening calculator.")
+    os.system("calc")
+    
+def shutdown():
+    speak("shutting down the system.")
+    os.system("shutdown /s /t 1")    
+    
+def open_whatsapp():
+    speak("Opening whatsapp")
+    os.system("start whatsapp")
+
+def open_skype():
+    speak("Opning skype")
+    os.system("start skype")
+
+def open_excel():
+    speak("Opning excel")
+    os.system("Opening excel")
+
+def open_word():
+    speak("Opening word")
+    os.system("Opening word")
+
+def open_command_prompt():
+    speak("Opening Command Prompt.")
+    os.system("start cmd")
+
+def open_Windows_setings():
+    speak("Opening Windows Settings.")
+    os.system("strt devmgmt.msc")
 
 # TO OPEN WEBSITE YOU NEED TO TELL JARVIS TO (JARVIS OPEN 'YOUTUBE')
 def processCommand(c):  #THIS COMMAND IS RESPONSIBLE FOR PROCESSING USER`S COMMANDS...
+    c = c.lower()
     print(f"Recognized command: {c}")  
     if "open google" in c.lower():
         webbrowser.open("https://google.com")
@@ -77,8 +137,6 @@ def processCommand(c):  #THIS COMMAND IS RESPONSIBLE FOR PROCESSING USER`S COMMA
         webbrowser.open("https://linkedin.com")
     elif "open amazon" in c.lower():
         webbrowser.open("https://amazon.com")  
-    elif "open spotify" in c.lower():
-        webbrowser.open("https://spotify.com")
     elif "open netflix" in c.lower():
         webbrowser.open("https://netflix.com")
     elif "open wikipedia" in c.lower():
@@ -87,6 +145,14 @@ def processCommand(c):  #THIS COMMAND IS RESPONSIBLE FOR PROCESSING USER`S COMMA
         tell_joke()
     elif "tell me the news" in c.lower() or "news headlines" in c.lower():
         get_news()
+    elif "shutdown system" in c or "shutdown computer" in c:
+        shutdown()
+    elif "open calculator" in c:
+        open_calculator()
+    elif "what's the date" in c or "tell me the date" in c or "today's date" in c:
+        get_date() 
+    elif "What time is it" in c or "tell me the time" in c or "current time" in c:
+        get_time()    
     
     # FOR PLAYING MUSIC
     elif c.lower().startswith("play"):
@@ -101,6 +167,7 @@ def processCommand(c):  #THIS COMMAND IS RESPONSIBLE FOR PROCESSING USER`S COMMA
 
 if __name__ == '__main__': #WHEN THE PROGRAM STARTS IT ANNOUNCES THAT IT IS INITIALIZING JARVIS
     speak("Initializing Jarvis...")
+    greet_user() #greet the user
     while True:
         # Listen for the wake word "jarvis"
         r = sr.Recognizer()
@@ -109,7 +176,7 @@ if __name__ == '__main__': #WHEN THE PROGRAM STARTS IT ANNOUNCES THAT IT IS INIT
         try:
             with sr.Microphone() as source:
                 print("Listening...")
-                audio = r.listen(source, timeout=3, phrase_time_limit=1)
+                audio = r.listen(source, timeout=10, phrase_time_limit=5)
             word = r.recognize_google(audio)
             print(f"Wake word detected: {word}")  
             if word.lower() == "jarvis":
