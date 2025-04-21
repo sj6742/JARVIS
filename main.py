@@ -167,7 +167,7 @@ def processCommand(c):  #THIS COMMAND IS RESPONSIBLE FOR PROCESSING USER`S COMMA
 
 if __name__ == '__main__': #WHEN THE PROGRAM STARTS IT ANNOUNCES THAT IT IS INITIALIZING JARVIS
     speak("Initializing Jarvis...")
-    greet_user() #greet the user
+    greet_user() 
     while True:
         # Listen for the wake word "jarvis"
         r = sr.Recognizer()
@@ -192,3 +192,5 @@ if __name__ == '__main__': #WHEN THE PROGRAM STARTS IT ANNOUNCES THAT IT IS INIT
         
         except Exception as e:
             print(f"Error: {e}")
+            
+            
